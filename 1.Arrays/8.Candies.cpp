@@ -2,7 +2,7 @@
 #include<algorithm>
 using namespace std;
 //Question link:https://www.geeksforgeeks.org/chocolate-distribution-problem/
-void find_candi_from_array(int *a,int students,int n)
+void find_candi_from_array(int *a,int students,int n,int m)
 {
 	if(students>n)  return ;
 	sort(a,a+n);
