@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+// Question link:https://www.geeksforgeeks.org/leaders-in-an-array/
 void find_leaders(int n,int*a,int i,int max_val)   // it is O(n) and dp solution will be O(n^2).A
 {
     if(i==-1) return;

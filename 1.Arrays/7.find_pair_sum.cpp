@@ -1,6 +1,7 @@
 #include <iostream>
 #include<set>
 using namespace std;
+//Question link:https://www.geeksforgeeks.org/find-a-pair-with-the-given-difference/
 int find_sum_pair(int n,int*a,int k)
 {
     set<int>map;

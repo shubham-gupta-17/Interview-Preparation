@@ -1,7 +1,7 @@
 #include <iostream>
 #include<algorithm>
 using namespace std;
-
+//Question link:https://www.geeksforgeeks.org/chocolate-distribution-problem/
 void find_candi_from_array(int *a,int students,int n)
 {
 	if(students>n)  return ;

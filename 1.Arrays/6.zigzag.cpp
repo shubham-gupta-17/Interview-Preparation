@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-
+// Question link:https://www.geeksforgeeks.org/convert-array-into-zig-zag-fashion/
 int main() {
 	//code
 	int t;

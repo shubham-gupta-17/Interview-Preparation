@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+// Question link : https://www.geeksforgeeks.org/equilibrium-index-of-an-array/
 int find_equillibrium(int n,int*a)
 {
     int idx=-1;
