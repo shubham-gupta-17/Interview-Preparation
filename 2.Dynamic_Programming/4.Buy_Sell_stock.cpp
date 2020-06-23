@@ -39,6 +39,7 @@ int buy_sell_1_optimise(vector<int>& prices) {
     }
     return profit;
 }
+// kadane's approach
 int buy_sell_1_kadane(int *a,int n)
 {
 	int profit=0;
@@ -55,6 +56,34 @@ int buy_sell_1_kadane(int *a,int n)
 	return profit;
 }
 
+// divide and conquer approach
+class stock{
+	int profit=0;
+	int sell=0;  // the maximum at which i have sold my share
+	int buy=0;  // the minimum value at which i have bought a share
+};
+ 
+ stock buy_sell_2_divide(int *a ,int n,int start,int end)
+ {
+ 	stock arr;
+ 	if(start==end)
+ 	{	
+ 		arr.sell=arr.buy=a[start];
+ 		if(start==0) arr.sell=INT_MIN;
+ 		if(start==n-1) arr.buy=INT_MAX;
+ 		return arr;
+ 	}
+
+ 	int mid=(start+end)/2;
+ 	stock left=buy_sell_2_divide(a,n,start,mid);
+ 	stock right=buy_sell_2_divide(a,n,mid+1,end);
+
+ 	arr.profit=max(max(right.profit,left.profit),right.sell-left.buy);
+ 	arr.buy=min(left.buy,right.buy);
+ 	arr.sell=max(left.sell,right.sell);
+ 	return arr;
+
+ }
 //===============================================================================================================
 int find(vector<int>&prices,int n,int i,int bought_price)
 {
@@ -254,6 +283,7 @@ int main()
 	cout<<buy_sell_1(a,n);
 	cout<<buy_sell_1_optimise(a,n);
 	cout<<buy_sell_1_kadane(a,n);
+	cout<<buy_sell_2_divide(a,n,0,n-1);  // divide and conquer approach
 
 	//leetcode 122
 	cout<<buy_sell_2_recursion(a,n); // but this will probably give TLE
