@@ -2,6 +2,8 @@
 using namespace std;
 
 //Resource link:https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/discuss/108870/most-consistent-ways-of-dealing-with-the-series-of-stock-problems
+//Important discussion: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/discuss/54113/a-concise-dp-solution-in-java
+
 int buy_sell_1(int *prices,int n) {
         int profit=0;
         for(int i=0;i<n-1;i++)
@@ -189,7 +191,9 @@ int buy_sell_4_dp(int*price,int n)
              int current_price=INT_MIN;
              current_price=max(current_price,dp[t-1][0]-price[0]);
             for(int i=1;i<n;i++)
-            {   current_price=max(current_price,dp[t-1][i-1]-price[i-1]);
+            {   
+            	int x=(i-2>=0)?dp[t-1][i-2]:0;
+                current_price=max(current_price,x-price[i-1]);
                 dp[t][i]=max(dp[t][i-1],price[i]+current_price);
                 profit=max(dp[t][i],profit);
             }
@@ -264,8 +268,8 @@ int buy_sell_5_dp(int*prices,int n)
 {
 	if(n==0 || n==1) return 0;
         
-        int *dp0=new int[n]();
-        int *dp1=new int[n]();
+        int *dp0=new int[n]();  // maximum profit after selling stock 
+        int *dp1=new int[n]();  // maximum profit after buying a stock
         dp1[0]=-prices[0];
         for(int i=1;i<n;i++)
         {
