@@ -28,7 +28,7 @@ void find_sum(int n,sum s,int*a)
 	    }
 	    if(cont)
 	    cout<<idx[0]+1<<" "<<idx[1]+1<<endl;
-	    else 
+	    else
 	    cout<<"-1"<<endl;
 	return ;
 }
@@ -44,11 +44,11 @@ int find_sum_map(int n,int k,int*a)
         sum+=a[i];
         if(sum==k) count++;
         if(map.find(sum-k)!=map.end()) count+=map[sum-k];
-        //else if(map.find(sum-k)==map.end()) 
+        //else if(map.find(sum-k)==map.end())
         map[sum]++;
     }
     return count;
-    
+
 }
 
 int main() {
