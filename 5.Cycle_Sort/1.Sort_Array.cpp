@@ -34,4 +34,5 @@ int main()
      if(cycle>0) ans+=(cycle-1);
   }
   cout<<ans;
+    //T.C= O(nlogn);
 }
