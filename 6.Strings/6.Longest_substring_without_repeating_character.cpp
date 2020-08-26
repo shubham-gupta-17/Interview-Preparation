@@ -2,7 +2,8 @@
 using namespace std;
 //=======================================================================================
 int ans=0;
-void find(string&s,int i,int n,int len,vector<bool>&vis)
+bool vis[128]={false}; // do not use vector as it will take a lot of time
+void find(string&s,int i,int n,int len)
 {
        if(i==n || vis[s[i]-' ']==true){
            ans=max(ans,len);
@@ -22,7 +23,7 @@ int lengthOfLongestSubstring(string &s) {
         int ans=0;
         for(int i=0;i<n;i++)
         {
-            vector<bool> vis(128,false);
+            bool vis[128]={false};
             vis[s[i]-' ']=true;
             int len=1;
             int j=i+1;
@@ -38,6 +39,35 @@ int lengthOfLongestSubstring(string &s) {
         return ans;
     }
 }
+
+//=============================================================================================
+int lengthOfLongestSubstring_Opti(string &s)
+{
+  int n=s.length();
+  if(n==0)return 0;
+  int ans=1;
+  int i=0;
+  int j=1;
+  int len=1;
+  bool vis[128]=false;
+  vis[s[0]-' ']=true;
+  while(j<n)
+  {
+     if(vis[s[j]-' ']){
+       ans=max(ans,len);
+       while(i<j && vis[s[j]-' ']) {
+         vis[s[i]-' ']=false;
+         i++;
+       }
+       len=j-i;
+     }
+
+     len++
+     vis[s[j]-' ']=true;
+     j++;
+  }
+  return  ans=max(ans,len);
+}
 int main()
 {
     string s="aabaa!bb";
@@ -48,6 +78,9 @@ int main()
 
     //Method 2: for loop= O(n^2);
      cout<<lengthOfLongestSubstring(s);
+
+     //Method 3: O(2*n)==O(n)
+     cout<<lengthOfLongestSubstring_Opti(s);
 
 
 }
