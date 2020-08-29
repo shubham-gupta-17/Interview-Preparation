@@ -2,7 +2,6 @@
 #include<queue>
 #include<vector>
 using namespace std;
-
 void addEdge(int u ,int v,vector<vector<int *>>&graph)
 {
   graph[u].push_back(new int(v));

@@ -1,14 +1,20 @@
-modi->putin trump yogi prabhu 
-pope->putin prabhu 
-prabhu->yogi modi pope 
-putin->trump modi pope 
-trump->putin modi 
-yogi->modi prabhu 
-
-putin->trump->modi->pope->yogi->prabhu->
-putin->trump->modi->yogi->prabhu->pope
-putin->trump->modi->prabhu->pope
-putin->modi->yogi->prabhu->pope
-putin->modi->prabhu->pope
-putin->pope
-6
+0->3, 1, 6, 
+1->0, 2, 
+2->1, 3, 
+3->0, 2, 4, 
+4->3, 5, 6, 
+5->4, 6, 
+6->4, 5, 0, 
+0->3->4->5->6
+0->3->4->6
+0->1->2->3->4->5->6
+0->1->2->3->4->6
+0->6
+5
+0->1->2->3->4->5->6
+There is a hamitonian cycle
+0->1->2->3->4->6->5
+No hamitonian cycle
+0->6->5->4->3->2->1
+There is a hamitonian cycle
+3
