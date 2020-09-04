@@ -122,6 +122,7 @@ int bfs(int src,int destination)
       que.pop();
 
       if(vertex==destination) return level;
+      
       if(vis[vertex]){
          cout<<"Cycle is present between: "<<src<<"and "<<vertex;
          continue;
