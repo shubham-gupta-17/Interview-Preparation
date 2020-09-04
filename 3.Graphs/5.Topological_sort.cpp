@@ -138,6 +138,27 @@ bool topt_dfs_opti(int src,vector<bool>&vis,vector<bool>&mypath,vector<int>st)
     mypath[src]=false;
     return cycle;
 }
+
+// we can do this using one array also
+// 1 for mypath
+// 2 for visited
+bool topo_sort_dfs_(int src,vector<int>&vis,vector<int>&st)
+{
+  if (vis[src]==1) return true;
+  if (vis[src]==2) return false;
+
+  vis[src]=1;
+  bool cycle=false;
+  for(int vtx:graph[src])
+  {
+      cycle=cycle||topo_sort_dfs_(vtx,vis,st);
+      
+  }
+  vis[src]=2;
+  st.push_back(src);
+  return cycle;
+
+}
 vector<int> topological_sort_opti()
 {
   // we are using this algo for cycle detection in directed graph and find the path in which cycle is present
@@ -151,6 +172,7 @@ vector<int> topological_sort_opti()
       if(!vis[i]) ans=ans||topo_dfs_opti(i,vis,mypath,st);
     }
 
+// if ans is true then there is no hamintonian Path and return empty Array
     if(ans){
       st.clear();
     }
