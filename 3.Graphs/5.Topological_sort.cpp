@@ -100,6 +100,7 @@ bool khans_BFS(vector<int>&ans,vector<int>&edge)
     if(ans.size()!=n) return false;
     return true;
 }
+
 void khansAlgo()
 {
    // find incoming edges Array
@@ -119,6 +120,44 @@ void khansAlgo()
 
 
 }
+//===================================================================
+bool topt_dfs_opti(int src,vector<bool>&vis,vector<bool>&mypath,vector<int>st)
+{
+    vis[src]=mypath[src]=true;
+
+    bool cycle=false;
+    for(int vtx:graph[src])
+    {
+       if(!vis[vtx] && !cycle)
+        cycle=cycle||topo_dfs_opti(vtx,vis,mypath,st);
+
+       if(mypath[vtx]) return true;
+    }
+
+    st.push_back(src);
+    mypath[src]=false;
+    return cycle;
+}
+
+vector<int> topological_sort_opti()
+{
+  // we are using this algo for cycle detection in directed graph and find the path in which cycle is present
+
+    vector<bool>vis(n,false);
+    vector<bool>mypath(n,false);
+    vector<int> st;
+    bool ans=false;
+    for(int i=0;i<n;i++)
+    {
+      if(!vis[i]) ans=ans||topo_dfs_opti(i,vis,mypath,st);
+    }
+
+    if(ans){
+      st.clear();
+    }
+    return st;
+
+}
 int main()
 {
    create_graph();
@@ -127,4 +166,7 @@ int main()
 
    khansAlgo();
 
+  vector<int>path= topological_sort_opti();
+
+  return 0;
 }
