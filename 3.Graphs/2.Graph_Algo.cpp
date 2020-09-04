@@ -4,24 +4,24 @@
 using namespace std;
 vector<vector<int *>>graph(7,vector<int*>());
 int n=7;
-void addEdge(int u ,int v,vector<vector<int *>>&graph)
+void addEdge(int u ,int v)
 {
   graph[u].push_back(new int(v));
   graph[v].push_back(new int(u));
 }
-void create_graph(vector<vector<int *>>&graph)
+void create_graph()
 {
 
-  addEdge(0,3,graph);
-  addEdge(0,1,graph);
-  addEdge(1,2,graph);
-  addEdge(3,2,graph);
-  addEdge(3,4,graph);
-  addEdge(4,5,graph);
-  addEdge(4,6,graph);
-  addEdge(5,6,graph);
+  addEdge(0,3);
+  addEdge(0,1);
+  addEdge(1,2);
+  addEdge(3,2);
+  addEdge(3,4);
+  addEdge(4,5);
+  addEdge(4,6);
+  addEdge(5,6);
 }
-void display_graph(vector<vector<int *>>&graph)
+void display_graph()
 {
     for(int i=0;i<graph.size();i++)
     {
@@ -32,7 +32,7 @@ void display_graph(vector<vector<int *>>&graph)
     }
     return ;
 }
-int all_path(vector<vector<int *>>&graph, string path, vector<bool>&vis,int *src)
+int all_path( string path, vector<bool>&vis,int *src)
 {
    int i=(*src);
     if(i==graph.size()-1){
@@ -44,7 +44,7 @@ int all_path(vector<vector<int *>>&graph, string path, vector<bool>&vis,int *src
     vis[i]=true;
     int count=0;
     for(int*a : graph[i]){
-      count+=all_path(graph,path+"->"+to_string(i),vis,a);
+      count+=all_path(path+"->"+to_string(i),vis,a);
     }
 
     vis[i]=false;
@@ -105,31 +105,67 @@ void dfs(string path,int i,vector<bool>&vis,int count)
     vis[i]=false;
     return;
 }
+
+int bfs(int src,int destination)
+{
+  vector<bool>vis(n,false); // to prevent Cycle
+  queue<int> que;
+  que.push(src);
+ //vis[src]=true;
+  int level=0;
+  while(!que.empty())
+  {
+    int size=que.size();
+    while(size--)
+    {
+      int vertex=que.front();
+      que.pop();
+
+      if(vertex==destination) return level;
+      if(vis[vertex]){
+         cout<<"Cycle is present between: "<<src<<"and "<<vertex;
+         continue;
+       }
+
+         vis[vertex]=true;
+         for(int *v:graph[vertex]){
+           if(!vis[*v])  que.push(*v);
+         }
+
+    }
+    level++;
+  }
+  return -1;
+}
 int main()
 {
 
-    create_graph(graph);
-    display_graph(graph);
+    create_graph();
+    display_graph();
     vector<bool>vis(7,false);
     int*src=new int(0);
 
     // all path from source to destination
     cout<<"ALL PATHS: "<<endl;
-    cout<<all_path(graph,"",vis,src)<<endl;
+    cout<<all_path("",vis,src)<<endl;
 
     // hamitonian path
     vis.resize(7,false);
     cout<<"HAMITONIAN PATH:"<<endl;
     cout<<hamitonian_path((*src),(*src),0,"",vis)<<endl;
 
-    //DFS : traverse the graph using recursion
+    //DFS : traverse the graph using recursion for all sources
     vis.resize(n,false);
     cout<<endl<<"DFS TRAVERSAL: "<<endl;
     for(int i=0;i<n;i++){
+      if(!vis[i])
       dfs("",i,vis,0);
       cout<<endl;
     }
 
+    //BFS: it will give minimum no of edges from src to destination
+    int ans=bfs(0,6);
+    cout<<ans;
 
 
 }
