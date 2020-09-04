@@ -51,7 +51,7 @@ void topological_sort()
     cout<<topo[i]<<" ";
 }
 
-//================================================================
+//==================================================================
 void find_incoming_edges(vector<int>&edge)
 {
     for(int i=0;i<n;i++)
@@ -120,7 +120,7 @@ void khansAlgo()
 
 
 }
-//===================================================================
+//============================================================================
 bool topt_dfs_opti(int src,vector<bool>&vis,vector<bool>&mypath,vector<int>st)
 {
     vis[src]=mypath[src]=true;
@@ -138,7 +138,6 @@ bool topt_dfs_opti(int src,vector<bool>&vis,vector<bool>&mypath,vector<int>st)
     mypath[src]=false;
     return cycle;
 }
-
 vector<int> topological_sort_opti()
 {
   // we are using this algo for cycle detection in directed graph and find the path in which cycle is present
@@ -158,6 +157,7 @@ vector<int> topological_sort_opti()
     return st;
 
 }
+
 int main()
 {
    create_graph();
@@ -166,7 +166,7 @@ int main()
 
    khansAlgo();
 
-  vector<int>path= topological_sort_opti();
+  vector<int>path = topological_sort_opti();
 
   return 0;
 }
