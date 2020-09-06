@@ -12,13 +12,13 @@ class Node{
 };
 void create(vector<vector<int>>&arr)
 {
-  arr.push_back({10, 0, 1});
+  arr.push_back({40, 0, 1});
   arr.push_back({10, 0, 3});
   arr.push_back({10, 1, 2});
-  arr.push_back({40, 2, 3});
+  arr.push_back({10, 2, 3});
   arr.push_back({2, 3, 4});
   arr.push_back({2, 4, 5});
-  arr.push_back({3, 4, 6});
+  arr.push_back({10, 4, 6});
   arr.push_back({8, 5, 6});
 
 }
@@ -76,8 +76,14 @@ int main()
 
     create(arr);
 
+    // sort the vector on the basis of weight to make a MST
+    sort(arr.begin(),arr.end(),[](vector<int> a,vector<int>b){
+      return a[0]<b[0];
+    });
+
+    int min_weight=0;
     vector<vector<Node>>graph(n,vector<Node>());
-    for(int i=0;i<n;i++)
+    for(int i=0;i<arr.size();i++)
     {
         int u=arr[i][1];
         int v=arr[i][2];
@@ -87,10 +93,10 @@ int main()
         {
           create_graph(arr[i][0],u,v,graph);
           merge(u,v,size,parent);
+          min_weight+=arr[i][0];
         }
-        else cout<<"Cycle between:"<<u<<" and "<<v;
     }
-
+    cout<<min_weight<<endl;
     display(graph);
 
     for(int i=0;i<n;i++) cout<<parent[i]<<" ";
