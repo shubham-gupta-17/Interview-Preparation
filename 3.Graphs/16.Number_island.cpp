@@ -36,7 +36,7 @@ int numIslands_DFS(vector<vector<char>>& grid) {
 
 int main()
 {
-  vector<vector<char>> grid={{"1","1","0","0","0"},{"1","1","0","0","0"},{"0","0","1","0","0"},{"0","0","0","1","1"}}
+  vector<vector<char>> grid={{"1","1","0","0","0"},{"1","1","0","0","0"},{"0","0","1","0","0"},{"0","0","0","1","1"}};
 
   // Method 1: DFS
   cout<<numIslands_DFS(grid);
