@@ -2,7 +2,6 @@
 using namespace std;
 // leetcode 1129
 // 1=red,0=blue
-
 class Node{
     public :
     int u;
