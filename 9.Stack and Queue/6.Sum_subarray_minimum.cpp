@@ -1,13 +1,12 @@
 #include<bits/stdc++.h>
 using namespace std;
-int main()
-{
-    int n;
-    cin>>n;
-    int *arr=new int[n];
-    for(int i=0;i<n;i++) cin>>arr[i];
+// leetcode 907
 
-    stack<int> st;
+int sumSubarrayMins(int *arr,int n) {
+    
+        if(n==0) return 0;
+        int mod=(int)1e9+7;
+        stack<int> st;
     int *left=new int[n]();
     int *right=new int[n]();
     
@@ -29,9 +28,9 @@ int main()
     }
 
     stack<int>st1;
-     for(int i=0;i<n-1;i++)
+     for(int i=0;i<n;i++)
     {
-        while(!st1.empty() && arr[i]<=arr[st1.top()])
+        while(!st1.empty() && arr[i]<arr[st1.top()])  // here = is removed to handle duplicacy eg[71,55,86,55]
         {
             int idx=st1.top();
             st1.pop();
@@ -42,11 +41,20 @@ int main()
 
     int ans=0;
     for(int i=0;i<n;i++)
-    {
-       ans+=arr[i]*left[i]*right[i];
+    {   
+       cout<<left[i]<<" "<<right[i]<<endl;
+       ans=(ans+arr[i]*left[i]*right[i])%mod;
+       
     }
-    cout<<ans;
+    return ans;
+}
+int main()
+{
+    int n;
+    cin>>n;
+    int *arr=new int[n];
+    for(int i=0;i<n;i++) cin>>arr[i];
+
+    cout<<sumSubarrayMins(arr,n);
     return 0;
-
-
 }
