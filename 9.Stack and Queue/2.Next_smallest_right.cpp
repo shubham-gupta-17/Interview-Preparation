@@ -8,9 +8,11 @@ int main()
     for(int i=0;i<n;i++) cin>>arr[i];
 
     stack<int> st;
-    //int *left=new int[n]();
     int *right=new int[n]();
 
+    // initialise 
+    for(int i=0;i<n;i++) right[i]=-1;
+    
     // find smallest on right
     right[n-1]=-1;
     for(int i=0;i<n-1;i++)
