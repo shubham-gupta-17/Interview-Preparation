@@ -12,11 +12,11 @@ int main()
 
     // initialise 
     for(int i=0;i<n;i++) right[i]=-1;
-
-    // find smallest on right
+    
+    // find greatest on right
     for(int i=0;i<n-1;i++)
     {
-        while(!st.empty() && arr[i]<=arr[st.top()])
+        while(!st.empty() && arr[i]>=arr[st.top()])
         {
             int idx=st.top();
             st.pop();
@@ -27,7 +27,7 @@ int main()
 
     for(int i=0;i<n;i++) {
 
-        if(right[i]==-1) cout<<arr[i]<<" "<<"-1";
+        if(right[i]==-1) cout<<arr[i]<<" "<<"-1"<<endl;
         else cout<<arr[i]<<" "<<arr[right[i]]<<endl;
     }
     return 0;
