@@ -31,6 +31,5 @@ int main()
 {
     vector<int> arr={0,0,0,0,1,1,1,2,2,3,3,3};
     cout<<remove(arr,2)<<endl;
-    cout<<remove_dequeue(arr,2);
     return 0;
 }
