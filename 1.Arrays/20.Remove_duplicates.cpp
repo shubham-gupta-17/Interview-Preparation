@@ -8,17 +8,19 @@ int remove(vector<int>&nums,int k)
         int i=1;
         int j=1;
         int count=1;
+        // start with j=1;
+        // here i denotes iterator on output array and j is an iterator over input array
         while(j<n)
         {
             if(nums[j]==nums[j-1])
             {
-                count++;
-                if(count<=k){
+                count++;  // if element is equal to previous element increment the count
+                if(count<=k){  // if count less than k swap element of input array with output array
                     nums[i++]=nums[j];
                 }
             }
             else{
-                count=1;
+                count=1;  // if not equal than set count=1 and swap element
                 nums[i++]=nums[j];
             }
             j++;
