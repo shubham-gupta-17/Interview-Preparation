@@ -31,9 +31,17 @@ int maxAreaOfIsland(vector<vector<int>>& grid) {
    }
    return ans;
 }
+
+//====================================================================================
+// Approach 2: union find
+
+int max_area_union(vector<vector<char>>&gird)
+{
+
+}
 int main()
 {
-  vector<vector<int>> grid={{"1","1","0","0","0"},{"1","1","0","0","0"},{"0","0","1","0","0"},{"0","0","0","1","1"}};
+  vector<vector<char>> grid={{"1","1","0","0","0"},{"1","1","0","0","0"},{"0","0","1","0","0"},{"0","0","0","1","1"}};
   cout<<maxAreaOfIsland(grid);
   return 0;
 }
