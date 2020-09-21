@@ -24,7 +24,6 @@ int f(int x, int K, int N) {
         }
         return ans;
 }
-
 int superEggDrop_2(int K, int N) {
         int lo = 1, hi = N;
         while (lo < hi) {
