@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 int n,m;
-int n,m;
+// leetcode 463
 int dfs(vector<vector<int>>&grid,int i,int j)
 {
    if(grid[i][j]!=1) return 0;

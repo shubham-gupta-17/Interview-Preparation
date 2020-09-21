@@ -34,7 +34,7 @@ int numIslands_DFS(vector<vector<char>>& grid) {
 
 //=============================================================================
 vector<int>parent;
-vector<int>size();
+vector<int>size;
 int findParent(int u)
 {
   if(parent[u]==u) return u;
