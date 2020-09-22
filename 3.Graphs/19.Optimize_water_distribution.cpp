@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 // leetcode  1168
+// basically we have to find out MST
 vector<int>parent;
 vector<int>size;
 int find_parent(int u)

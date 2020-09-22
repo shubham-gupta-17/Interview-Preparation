@@ -20,8 +20,8 @@ void create(vector<vector<int>>&arr)
   arr.push_back({40, 2, 3});
   arr.push_back({2, 3, 4});
   arr.push_back({2, 4, 5});
-  arr.push_back({8, 4, 6});
-  arr.push_back({3, 5, 6});
+  arr.push_back({3, 4, 6});
+  arr.push_back({8, 5, 6});
 
 }
 void display(vector<vector<Node>>&graph)
