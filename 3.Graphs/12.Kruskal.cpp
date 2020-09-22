@@ -1,5 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
+// kruskal gives MST min. spanning tree means the tree will have minimum sum ofweights of all edges
+
 class Node{
   public :
   int neighbour;
@@ -12,14 +14,14 @@ class Node{
 };
 void create(vector<vector<int>>&arr)
 {
-  arr.push_back({40, 0, 1});
+  arr.push_back({10, 0, 1});
   arr.push_back({10, 0, 3});
   arr.push_back({10, 1, 2});
-  arr.push_back({10, 2, 3});
+  arr.push_back({40, 2, 3});
   arr.push_back({2, 3, 4});
   arr.push_back({2, 4, 5});
-  arr.push_back({10, 4, 6});
-  arr.push_back({8, 5, 6});
+  arr.push_back({8, 4, 6});
+  arr.push_back({3, 5, 6});
 
 }
 void display(vector<vector<Node>>&graph)
