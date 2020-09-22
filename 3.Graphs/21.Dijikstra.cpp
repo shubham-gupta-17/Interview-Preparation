@@ -8,27 +8,26 @@ class Node{
   Node(int w,int v)
   {
     neighbour=v;
-    w=weight;
+    weight=w;
   }
 };
-vector<vector<Node>>arr;
 int n=7;
+vector<vector<Node*>>arr(n,vector<Node*>());
 void addEdge(int w,int u,int v)
 {
-  arr[u].push_back(Node(w,v));
-  arr[v].push_back(Node(w,u));
+  arr[u].push_back(new Node(w,v));
+  arr[v].push_back(new Node(w,u));
 }
-void create(vector<vector<int>>&arr)
+void create()
 {
-
   addEdge(10,0,1);
   addEdge(10,0,3);
   addEdge(10,1,2);
-  addEdge(10,2,3);
-  addEdge(10,3,4);
-  addEdge(10,4,5);
-  addEdge(10,4,6);
-  addEdge(10,5,6);
+  addEdge(40,2,3);
+  addEdge(2,3,4);
+  addEdge(2,4,5);
+  addEdge(3,4,6);
+  addEdge(8,5,6);
 }
 
 // dijikstra
@@ -53,12 +52,11 @@ struct compare{
       return d1.wsf>d2.wsf;
   }
 };
-vector<vector<Node*>> new_graph;
+vector<vector<Node*>> new_graph(n,vector<Node*>());
 void dijikstra(int src)
 {
     priority_queue<dpair , vector<dpair>, compare> que;
-    int n=graph.size();
-    vector<bool>(n,false);
+    vector<bool>vis(n,false);
     que.push(dpair(-1,src,0,0));
     while(!que.empty())
     {
@@ -72,12 +70,12 @@ void dijikstra(int src)
           new_graph[top.vertex].push_back(new Node(top.weight,top.source));
         }
 
-        for(Node node:arr[top.vertex])
+        for(Node *node:arr[top.vertex])
         {
-            int v=node.neighbour;
-            int weight_path=top.wsf+node.weight;
+            int v=node->neighbour;
+            int weight_path=top.wsf+node->weight;
             if(!vis[v])
-               que.push(dpair(top.vertex,v,node.weight,weight_path));
+               que.push(dpair(top.vertex,v,node->weight,weight_path));
 
         }
     }
@@ -90,7 +88,7 @@ void print_dijikstra()
     {
       cout<<i<<"= ";
         for(Node *node:new_graph[i])
-          cout<<node->neighbour<<" "<<node->weight<<", "
+          cout<<node->neighbour<<" "<<node->weight<<", ";
           cout<<endl;
     }
 }
@@ -99,6 +97,6 @@ int main()
     create();
     dijikstra(0);
     print_dijikstra();
-    return ;
+    return 0;
 
 }
