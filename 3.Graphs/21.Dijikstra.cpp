@@ -45,6 +45,14 @@ public:
     vertex=v;
     weight=w;
     wsf=ws;
+
+    /*
+      bool operator<(dpair const&d)const
+      {
+        return this.wsf>d.wsf;
+      }
+
+    */
   }
 };
 struct compare{
