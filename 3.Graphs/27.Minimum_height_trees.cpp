@@ -1,5 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
+// leetcode 310
+// Approach 1: O(n^2) time and O(n) space
 vector<int>arr;
 vector<vector<int>>graph;
 void create(vector<vector<int>>&edges,int n)
