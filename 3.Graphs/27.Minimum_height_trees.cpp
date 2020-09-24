@@ -60,10 +60,113 @@ vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
         return arr;
 
 }
+
+
+// ============================================================================================================
+ vector<int> findMinHeightTrees_opti(int n, vector<vector<int>>& edges) {
+        int m=edges.size();
+        vector<int> root;
+        
+        if(n==1){
+            root.push_back(0);
+            return root;
+        }
+         vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+        int m=edges.size();
+        vector<int> root;
+        
+        if(n==1){
+            root.push_back(0);
+            return root;
+        }
+        
+        // create a graph using set as we have to find vertexs in O(1);
+        vector<unordered_set<int>> graph(n);
+        for(int i=0;i<m;i++)
+        {
+            int u=edges[i][0];
+            int v=edges[i][1];
+            graph[u].insert(v);
+            graph[v].insert(u);
+        }
+        
+        // push leaf nodes in root;
+        vector<int> leaf;
+        for(int i=0;i<n;i++)
+        {
+            if(graph[i].size()==1) leaf.push_back(i);
+        }
+        for(int i:leaf) cout<<i<<" ";
+        // keep on removing leaf from graph
+        
+        while(1)
+        {
+            vector<int> next;
+            for(int vertex: leaf)
+            {
+                for(int source: graph[vertex])
+                {
+                    graph[source].erase(vertex);
+                    if(graph[source].size()==1) next.push_back(source);
+                    //if(graph[source].size()==0) root.push_back(source);
+                    
+                }
+                
+            }
+             if(next.empty()) return leaf;
+                leaf=next;
+            
+            
+        }
+        
+        return root;
+    }
+        // create a graph using set as we have to find vertexs in O(1);
+        vector<unordered_set<int>> graph(n);
+        for(int i=0;i<m;i++)
+        {
+            int u=edges[i][0];
+            int v=edges[i][1];
+            graph[u].insert(v);
+            graph[v].insert(u);
+        }
+        
+        // push leaf nodes in root;
+        vector<int> leaf;
+        for(int i=0;i<n;i++)
+        {
+            if(graph[i].size()==1) leaf.push_back(i);
+        }
+        for(int i:leaf) cout<<i<<" ";
+        // keep on removing leaf from graph
+        
+        while(1)
+        {
+            vector<int> next;
+            for(int vertex: leaf)
+            {
+                for(int source: graph[vertex])
+                {
+                    graph[source].erase(vertex);
+                    if(graph[source].size()==1) next.push_back(source);
+                    //if(graph[source].size()==0) root.push_back(source);
+                    
+                }
+                
+            }
+             if(next.empty()) return leaf;
+                leaf=next;
+            
+            
+        }
+        
+        return root;
+}
 int main()
 {
     int n=6;
     vector<vector<int>> edges={{3,0},{3,1},{3,2},{3,4},{5,4}};
-    findMinHeightTrees(n,edges);
+    cout<<findMinHeightTrees(n,edges)<<endl;
+    cout<<findMinHeightTrees_opti(n,edges);
     return 0;
 }
