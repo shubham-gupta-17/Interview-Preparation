@@ -1,10 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
-int fastSpeed = []() {
-    std::ios::sync_with_stdio(false);
-    std::cin.tie(nullptr);
-    std::cout.tie(nullptr);
-}();
+// int fastSpeed = []() {
+//     std::ios::sync_with_stdio(false);
+//     std::cin.tie(nullptr);
+//     std::cout.tie(nullptr);
+// }();
 vector<vector<int>> arr;
 int n,m,k;
 // take input
@@ -20,18 +20,40 @@ void input()
       cin>>a>>b>>c;
       arr.push_back({a,b,c});
     }
+
+
+}
+
+int *parent;
+int *size;
+int findParent(int u)
+{
+  if(parent[u]==u) return u;
+  return parent[u]=findParent(parent[u]);
+}
+void merge(int p1,int p2)
+{
+    if(size[p1]>size[p2])
+    {
+      parent[p2]=p1;
+      size[p1]+=size[p2];
+    }
+    else{
+      parent[p1]=p2;
+      size[p2]+=size[p1];
+    }
 }
 // since the total cost of maintenance shoul be min. so we will build MST hence use krushkal
-vector<vector<int>>graph(n,vector<int>());
+vector<vector<int>>graph;
 int  buil_MST_find_cost()
 {
     //sort the edges in increasing order of cost
-    sort(arr.begin(), arr.end(),(vector<int> a,vector<int> b){
-      return a[2]<b[2];
+    sort(arr.begin(), arr.end(),[](vector<int> a, vector<int> b) {
+        return a[2] < b[2];
     });
 
-    int *parent=new int[n]();
-    int *size=new int[n]();
+     parent=new int[n]();
+     size=new int[n]();
     for(int i=0;i<n;i++)
     {
         parent[i]=i;
@@ -49,14 +71,14 @@ int  buil_MST_find_cost()
         }
     }
 
+
     // find wether all cities are connected with each other or not
     // if gcc >1 then building roads is not possible
     int gcc=0;
     for(int i=0;i<n;i++){
-      if(parent[i]==i) count++;
+      if(parent[i]==i) gcc++;
     }
-
-    if(count>1) return -1;
+    if(gcc>1) return -1;
 
 
 
@@ -66,20 +88,20 @@ int  buil_MST_find_cost()
     // or cities get finish
 
     // so sort graph in decreasing order so higher cost are at top
-    sort(graph.begin(),graph.end(),(vector<int> a,vector<int> b){
+    sort(graph.begin(),graph.end(),[](vector<int> a,vector<int> b){
       return a[2]>b[2];
     });
 
     // find total amount for maintenance
     int amount=0;
-    for(int i=0;i<n;i++)
+    for(int i=0;i<graph.size();i++)
       amount+=graph[i][2];
 
     int roads=0;
-    for(int i=0;i<n;i++)
+    for(int i=0;i<graph.size();i++)
     {
       if(amount<k) return roads;
-      amount-=graph[i][2] + 1; 
+      amount-=graph[i][2] + 1;
       roads++;
     }
 
