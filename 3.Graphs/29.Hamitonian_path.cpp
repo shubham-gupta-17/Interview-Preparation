@@ -1,5 +1,5 @@
 #include<bits/stdc++.h>
-using namespace std;20200803_204907
+using namespace std;
 vector<vector<int>> graph(7,vector<int>());
 int n=7;
 void addEdge(int u,int v)
