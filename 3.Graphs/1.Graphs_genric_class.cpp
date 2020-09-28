@@ -6,6 +6,7 @@ class Graph_Genric{
   map<T,vector<T>*> m;
   int sizee=0;
   bool vect=false;
+  int m=0;
 public:
 
   vector<string> path;
