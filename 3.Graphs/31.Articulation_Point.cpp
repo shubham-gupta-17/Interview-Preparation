@@ -5,6 +5,7 @@ vector<vector<int>>graph;
 int *dis;
 int *low;
 int *par;
+int *AP;
 bool *vis;
 int rootTime=0;
 int countTime=0;
@@ -22,8 +23,8 @@ void dfs(int src){
 
             if(dis[src] <= low[neigh]) AP[src]++;
             if(dis[src] < low[neigh]) {
-                ans.push_back(sec,neigh);
-                cout<<"Remove edge between "<<src<<"and "<<neigh<<endl;
+                ans.push_back({src,neigh});
+                //cout<<"Remove edge between "<<src<<"and "<<neigh<<endl;
             }
             low[src]=min(low[neigh],low[src]);
         }
@@ -46,20 +47,24 @@ vector<vector<int>> connected_components(int n,vector<vector<int>>&edges)
      low=new int[n]();
      par=new int[n]();
      vis=new bool[n]();
+     AP=new int[n]();
      for(int i=0;i<n;i++) par[i]=-1;
 
      dfs(0);
 
      if(rootTime==1) AP[0]--;
 
-     for(int i=0;i<n;i++)
-      if(AP[i]>0) cout<<"AP wrt "<<i<<"->"<<AP[i]<<endl;
+     //for(int i=0;i<n;i++)
+     // if(AP[i]>0) cout<<"AP wrt "<<i<<"->"<<AP[i]<<endl;
     
      return ans;
+
 }
 int main(){
     int n;
     cin>>n;
     vector<vector<int>> edges={{0,1},{0,2},{0,3},{0,4},{0,5},{4,5}};
+    connected_components(n,edges);
+    return 0;
 
 }
