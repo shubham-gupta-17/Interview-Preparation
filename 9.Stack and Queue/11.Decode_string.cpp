@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+// leetcode 394 
 // Most efficient approach O(n) time and O(1) space
 string decodeString(const string& s, int& i) {
     string res;
