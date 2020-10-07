@@ -70,7 +70,7 @@ unordered_map<string,int> map;
             map[word]+=1;
         int m=s.length();
         k=words[0].length();
-        for(int i=0;i<m;i++)
+        for(int i=0;i<=m-(n*k);i++)
         {
             vis=new bool[m]();
             if(find(s,i,0)){    
