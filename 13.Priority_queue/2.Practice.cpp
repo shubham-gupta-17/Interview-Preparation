@@ -12,12 +12,12 @@ public:
     {
         this->age = a;
     }
-
-    bool operator<(person const &p2)
-    {
-        return this->age < p2->age;
-    }
 };
+
+bool operator<(person const &p1, person const &p2)
+{
+    return p1.age < p2.age;
+}
 
 // class compare
 // {
@@ -51,7 +51,7 @@ int main()
     while (!pq.empty())
     {
         person p1 = pq.top();
-        cout << p1.age;
+        cout << p1.age << endl;
         pq.pop();
     }
     return 0;
