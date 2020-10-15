@@ -29,11 +29,21 @@ vector<int> maxSlidingWindow(vector<int>& a, int k) {
         ans.push_back(a[que.front()]);
         return ans;
 }
+void maxSlidingWindow_stack(vector<int>&arr,int k){
+    // find next greatest on left from i=k-1 to n and if it comes within window then it is answer else current is answer
+    stack<int> st;
+    vector<int>ans;
+    for(int i=0;i<k;i++)
+    {
+        
+    }
+}
 int main()
 {
     vector<int> a={1,3,-1,-3,5,3,6,7};
     int k=3;
     maxSlidingWindow(a,k);
+    maxSlidingWindow_stack(a,k);
     return 0;
 
 
