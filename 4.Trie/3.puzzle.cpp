@@ -10,6 +10,7 @@ int find(string&words,int j,string &puzzles,int i){
         if(puzzle[i][ch-'a']!=1) return 0;
     }
     return 1;
+
 }
 vector<int> findNumOfValidWords(vector<string>& words, vector<string>& puzzles) {
     int n=words.size();
@@ -43,6 +44,82 @@ vector<int> findNumOfValidWords(vector<string>& words, vector<string>& puzzles) 
     }
     return ans;
     
+
+}
+//=====================================================================================================
+//Approach 2
+vector<int> findNumOfValidWords(vector<string>& words, vector<string>& puzzles) {
+        int n=puzzles.size();
+        int m=words.size();
+         vector<int> ans(n,0);
+       
+        unordered_map<char,vector<int>>map;
+        
+        for(string &s:words){
+            
+            int mask=0;
+            for(char& ch:s){
+                int j=(ch-'a');
+                mask = ((1<<j) | mask);
+            }
+            
+            for(int i=0;i<26;i++){
+                if((mask&(1<<i))>0) map['a'+i].push_back(mask);
+            }
+            
+        }
+      
+        for(int i=0;i<n;i++){
+            
+            string s=puzzles[i];
+            int pmask=0;
+            for(char ch:s){
+                pmask = (pmask | (1<<(ch-'a')));
+            }
+            int count=0;
+            
+            for(int  mask : map[puzzles[i][0]]){  
+             if(((mask & pmask)==mask)) count++;
+            }
+            ans[i]=count;
+            
+        }
+        return ans;
+
+}
+//==================================================================================================
+// Approach 3
+ int getmask(string &s){
+         int mask=0;
+            for(char& ch:s){
+                int j=(ch-'a');
+                mask = ((1<<j) | mask);
+            }
+         return mask;
+     }
+    vector<int> findNumOfValidWords(vector<string>& words, vector<string>& puzzles) {
+        int n=puzzles.size();
+        int m=words.size();
+         vector<int> ans;
+       
+        unordered_map<int,int>map;
+        
+        for(string &s:words){
+           int mask=getmask(s);
+           map[mask]+=1;
+        }
+      
+       for(string &s:puzzles){
+           int pmask=getmask(s);
+           int first=(1<<(s[0]-'a'));
+           int count=0;
+           for(int i=pmask; i>0 ;i=((i-1) & pmask)){
+               if(map.find(i)!=map.end() && (i&first)>0) count+=map[i];
+           }
+           ans.push_back(count);
+       }
+        return ans;
+
 }
 int main()
 {
