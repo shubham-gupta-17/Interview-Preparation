@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 using namespace std;
+// leetcode 1178
  int **word;
 int **puzzle;
 int find(string&words,int j,string &puzzles,int i){
@@ -44,6 +45,9 @@ vector<int> findNumOfValidWords(vector<string>& words, vector<string>& puzzles) 
         return ans;
         
 }
+
+//============================================================================================
+// bit manupluation
 int main()
 {
     vector<string> word={"aaaa","asas","able","ability","actt","actor","access"};
