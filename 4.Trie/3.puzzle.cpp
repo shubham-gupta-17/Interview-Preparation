@@ -1,60 +1,49 @@
 #include<iostream>
-  #include<vector>
-  using namespace std;
-  class Trie{
-      public:
-        vector<Trie*> arr;
-        bool wordend=false;
-        string word="";
-        Trie(){
-            arr.assign(26,nullptr);
-        }
-        
-    };
-    Trie *node=new Trie();
-    void create(string &s)
-    {
-        Trie *curr=node;
-        bool *vis=new bool[26]();
-        for(int i=0;i<s.length();i++)
-        {
-            int idx=s[i]-'a';
-            
-            if(curr->arr[idx]==nullptr &&!vis[idx]){
-                curr->arr[idx]= new Trie();
-                vis[idx]=true;
-            }       
-            if(curr->arr[idx]!=nullptr)
-            curr=curr->arr[idx];
-        }
-       
-        curr->wordend=true;
-        curr->word=s;
+#include<vector>
+using namespace std;
+ int **word;
+int **puzzle;
+int find(string&words,int j,string &puzzles,int i){
+    
+    if(word[j][puzzles[0]-'a']!=1) return 0;
+    for(char &ch:words){
+        if(puzzle[i][ch-'a']!=1) return 0;
     }
-    void display(Trie *root,int c){
-        if(root->wordend) {
-            cout<<root->word<<endl;  
+    return 1;
+}
+vector<int> findNumOfValidWords(vector<string>& words, vector<string>& puzzles) {
+        int n=words.size();
+        int m=puzzles.size();
+        
+        word=new int*[n];
+        for(int i=0;i<n;i++) word[i]=new int[26]();
+        
+        puzzle=new int*[m];
+        for(int i=0;i<m;i++) puzzle[i]=new int[26]();
+        
+        for(int i=0;i<n;i++)
+        {   
+            for(char &ch:words[i])
+                word[i][ch-'a']=1;
         }
         
-        for(int i=0;i<26;i++)
+        for(int i=0;i<m;i++)
         {
-            if(root->arr[i]!=nullptr)
-                display(root->arr[i],c+1);
+            for(char &ch:puzzles[i])
+                puzzle[i][ch-'a']=1;
         }
         
-        return ;
-    }
-    vector<int> findNumOfValidWords(vector<string>& words, vector<string>& puzzles) {
-        int n=puzzles.size();
-        vector<int> ans(n,0);
-        
-       
-        for(string &s:words)
-            create(s);
-        
-        dusplay();
+        vector<int>ans(m,0);
+        for(int i=0;i<m;i++){
+           
+            for(int j=0;j<n;j++)
+            {
+                if(find(words[j],j,puzzles[i],i)==1) ans[i]++;
+            }
+        }
         return ans;
-    }
+        
+}
 int main()
 {
     vector<string> word={"aaaa","asas","able","ability","actt","actor","access"};
