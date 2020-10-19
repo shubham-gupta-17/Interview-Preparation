@@ -7,7 +7,6 @@ int search(vector<int>& nums, int target) {
             int mid=(start+end)/2;
             int num=nums[mid];
             if(target==num) return mid;
-            
             // if there is rotation and mid lies in 1st part
             if(num>nums[end]){
                 if(target<num && target>=nums[start]) end=mid-1;
