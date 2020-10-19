@@ -52,4 +52,8 @@ int longestAwesome_bit(string &s){
 int main(){
     cout<<longestAwesome("453627654161");
     cout<<longestAwesome_bit("362567352");
+    // int a=5;
+    // int b=++a + a++;
+    // cout<<b;
+    return 0;
 }
