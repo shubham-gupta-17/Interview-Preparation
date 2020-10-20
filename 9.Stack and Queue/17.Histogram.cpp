@@ -37,5 +37,7 @@
         return max_area;
     }
    int main(){
-
+       vector<int> a={2,1,5,6,2,3};
+       cout<<largestRectangleArea(a);
+       return 0;
    } 
