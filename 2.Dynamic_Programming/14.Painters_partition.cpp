@@ -33,5 +33,5 @@ int partition(vector<int>&arr,int k,int i){
 int main(){
     int k=2;
     vector<int> arr={10, 10 ,10 ,10}; 
-    cout<<partition(arr,k,0);
+    cout<<splitArray(arr,k);
 }
