@@ -39,5 +39,7 @@ vector<int> ans;
         return ans;
     }
 int main(){
-
+    vector<int> nums={5,4,3,2,1};
+    sortArray(nums);
+    return 0;
 }
