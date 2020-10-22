@@ -58,6 +58,14 @@ using namespace std;
         return global==local;
         
 }
+
+//================================================================================
+bool isIdealPermutation(vector<int>&nums){
+    for(int i=0;i<nums.size();i++){
+        if(abs(nums[i]-i)>1) return false;
+    }
+    return true;
+}
 int main(){
     vector<int> nums={4,5,3,2,1};
     isIdealPermutation(nums);
