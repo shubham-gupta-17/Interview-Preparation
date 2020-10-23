@@ -1,3 +1,6 @@
+ #include<bits/stdc++.h>
+using namespace std;
+// leetcode 16
  int threeSumClosest(vector<int>& nums, int target) {
         int n=nums.size();
         
