@@ -1,6 +1,7 @@
  #include<bits/stdc++.h>
  using namespace std;
  vector<int> spiralOrder(vector<vector<int>>& matrix) {
+     
         int n=matrix.size();
         vector<int> ans;
         if(n==0) return ans;
@@ -22,7 +23,7 @@
             for(int i=er;i>=sr;i--) ans.push_back(matrix[i][sc]);
             sc++;
         }
-        
+
         
         return ans;
 }
