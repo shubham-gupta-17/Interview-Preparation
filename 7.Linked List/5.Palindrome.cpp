@@ -12,25 +12,25 @@ public:
         val = x;
     }
 };
- ListNode* node=NULL;
-    void find(ListNode*head)
-    {
-        if(!head) return ;
-        
-        find(head->next);
-        if(head->val==node->val)
-            node=node->next;
-        
-        return ;
-    }
-     bool isPalindrome(ListNode* head)
-     {
-         node=head;
-         find(head);
-         
-         return node==NULL;
-         
-     }
+ListNode *node = NULL;
+void find(ListNode *head)
+{
+    if (!head)
+        return;
+
+    find(head->next);
+    if (head->val == node->val)
+        node = node->next;
+
+    return;
+}
+bool isPalindrome(ListNode *head)
+{
+    node = head;
+    find(head);
+
+    return node == NULL;
+}
 int main()
 {
     ListNode *head = new ListNode(1);
