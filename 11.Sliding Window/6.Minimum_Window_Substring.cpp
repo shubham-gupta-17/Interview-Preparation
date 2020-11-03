@@ -61,11 +61,15 @@ string minWindow(string s, string t)
     int idx = -1;
     while (end < n)
     {
+        // adding the characters in map_s
         char ch = s[end];
         map_s[ch]++;
+
+        // now match count will increase only if we have found same char as in t with less or equal count
         if (map_s[ch] <= map_t[ch])
             match++;
 
+        // store answer and start releasing character to find a smaller answer
         while (start <= end && match == m)
         {
             //string res=s.substr(start,end-start+1);
@@ -77,10 +81,13 @@ string minWindow(string s, string t)
             }
             char ch1 = s[start];
             start++;
+            // if count==1 then remove from map_s
             if (map_s[ch1] == 1)
                 map_s.erase(ch1);
             else
                 map_s[ch1]--;
+                
+            // if count of s less then that of t means we have lost a useful character
             if (map_s[ch1] < map_t[ch1])
                 match--;
         }
