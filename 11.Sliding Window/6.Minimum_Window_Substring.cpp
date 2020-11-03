@@ -44,6 +44,43 @@ string minWindow(string s, string t)
         return "";
     return s.substr(idx, len);
 }
+
+//====================================================================================
+string minWindow(string s, string t) {
+        int n=s.length();
+        int m=t.length();
+        unordered_map<char,int> map_t;
+        for(char ch:t) map_t[ch]++;
+        
+        unordered_map<char,int> map_s;
+        int start=0,end=0;
+        int match=0;
+        int ans=-1;
+        int idx=-1;
+        while(end<n){
+            char ch=s[end];
+            map_s[ch]++;
+            if( map_s[ch]<=map_t[ch]) match++; 
+            
+            while( start<=end && match==m){
+                //string res=s.substr(start,end-start+1);
+                int res=end-start+1;
+                if(ans==-1 || res<ans) {
+                    ans=res;
+                    idx=start;
+                }
+                char ch1=s[start];
+                start++;
+                if(map_s[ch1]==1) map_s.erase(ch1);
+                else map_s[ch1]--;
+                if( map_s[ch1]<map_t[ch1]) match--;
+            }
+            end++;
+        }
+        
+        
+        return ans==-1? "":s.substr(idx,ans);
+    }
 int main()
 {
     string s = "cbaacbcbdfsacb";
