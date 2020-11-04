@@ -34,14 +34,15 @@ int find_Semester(vector<vector<int>> &arr, int n)
             que.pop();
 
             if (vis[top])
-                return -1;
+               continue;
 
             vis[top] = true;
             for (int a : map[top])
-                que.push(a);
+               if(--incoming[a]==0) que.push(a);
         }
         sem++;
     }
+    for(int i=0;i<n;i++) if(incoming[i]!=0) return -1;
     return sem;
 }
 int main()
