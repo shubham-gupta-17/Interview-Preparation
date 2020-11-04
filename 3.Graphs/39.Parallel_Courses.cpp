@@ -20,6 +20,8 @@ int find_Semester(vector<vector<int>> &arr, int n)
             que.push(i);
     }
 
+    if(que.empty()) return -1;
+
     bool *vis = new bool[n]();
     int sem = 0;
 
