@@ -4,6 +4,7 @@ using namespace std;
 int n;
 unordered_map<string, priority_queue<string, vector<string>, greater<string>>> map;
 vector<string> ans;
+// it is similar to finding topological sort
 bool find(string s, int i)
 {
     bool flag = false;
