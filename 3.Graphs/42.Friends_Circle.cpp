@@ -1,3 +1,6 @@
+ #include<bits/stdc++.h>
+ using namespace std;
+ // leetcode  547
  int n;
     int *parent;
     int *size;
@@ -45,3 +48,8 @@
     
         return ans;
     }
+int main(){
+    vector<vector<int>> arr={{1,1,0},{0,1,1},{1,0,1}};
+    findCircleNum(arr);
+    return 0;
+}
