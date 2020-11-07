@@ -31,7 +31,21 @@ string removeDuplicates(string &s)
     return ans;
 }
 //======================================================================
-
+string removeDuplicates(string &s)
+{
+    int n = s.length();
+    if (n == 0)
+        return s;
+    string res = "";
+    for (char ch : s)
+    {
+        if (res.size() && res.back() == ch)
+            res.pop_back();
+        else
+            res.push_back(ch);
+    }
+    return res;
+}
 int main()
 {
     string s;
