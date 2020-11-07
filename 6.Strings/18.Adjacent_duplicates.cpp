@@ -46,6 +46,19 @@ string removeDuplicates(string &s)
     }
     return res;
 }
+
+//========================================================================
+string removeDuplicates(string &s) {
+        int n=s.length();
+        int start=0,end=0;
+        while(end<n){
+            s[start]=s[end];
+            if(start-1>=0 && s[start-1]==s[start]) start-=2;
+            end++;
+            start++;
+        }
+        return s.substr(0,start);
+    }
 int main()
 {
     string s;
