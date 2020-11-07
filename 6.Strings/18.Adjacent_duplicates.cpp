@@ -30,6 +30,8 @@ string removeDuplicates(string &s)
     reverse(ans.begin(), ans.end());
     return ans;
 }
+//======================================================================
+
 int main()
 {
     string s;
