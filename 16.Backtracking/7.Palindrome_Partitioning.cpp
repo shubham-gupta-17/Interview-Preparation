@@ -10,6 +10,7 @@ bool is_palindrome(string &s)
 
     return true;
 }
+
 vector<vector<string>> ans;
 void find_part(string s, vector<string> &path)
 {
