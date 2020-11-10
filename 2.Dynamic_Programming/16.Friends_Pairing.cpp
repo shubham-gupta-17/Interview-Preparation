@@ -3,26 +3,27 @@ using namespace std;
 // #define int1 int
 // #define int long long 
 int *dp1;
-int find(int i, bool *vis, int n)
+int find(int i, bool *vis, int n,string ans)
 {
     if (i == n + 1)
     {
+        cout<<ans<<endl;
         return 1;
     }
-   // if(i==0 || dp1[i]!=0) return dp1[i];
+    //if(dp1[i]!=0) return dp1[i];
     if (vis[i])
-        return dp1[i] =find(i + 1, vis, n);
+        return dp1[i] =find(i + 1, vis, n,ans);  // i is also in pair with someone else so don't add it
     else
     {
         vis[i] = true;
         int count = 0;
-        count = find(i + 1, vis, n);
+        count = find(i + 1, vis, n,ans+to_string(i)+", ");  // i will remain single
         for (int j = i + 1; j <= n; j++)
         {
             if (vis[j])
                 continue;
             vis[j] = true;
-            count += find(i + 1, vis, n);
+            count += find(i + 1, vis, n,ans+to_string(i)+to_string(j)+", ");
             vis[j] = false;
         }
         vis[i] = false;
@@ -51,9 +52,9 @@ int main()
 {
     int n ;
     cin>>n;
-    cout << countFriendsPairings(n) << endl;
+    //cout << countFriendsPairings(n) << endl;
     bool *vis = new bool[n + 1]();
     dp1=new int[n+1]();
-    cout << find(1, vis, n);
+    cout << find(1, vis, n,"");
     return 0;
 }
