@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 // find all permutations of string
-
+// https://practice.geeksforgeeks.org/problems/pallindrome-patterns/0#
 void generate_permutation(int i, int len, char odd, string path, unordered_map<char, int> &mp)
 {
     if (i == len)
