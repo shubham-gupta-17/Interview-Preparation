@@ -7,7 +7,7 @@ int find(int i, bool *vis, int n,string ans,int k)
     {
         ans.pop_back();
         ans.pop_back();
-        cout<<ans<<endl;
+        //cout<<ans<<endl;
         return 1;
     }
      if(i>n || k<0) return 0;
@@ -32,12 +32,23 @@ int find(int i, bool *vis, int n,string ans,int k)
 
     return 0;
 }
+//==========================================================
+int **dp;
+int countFriendsPairings(int n,int k){
+    if(k==0 && n==0) return dp[n][k]=1;
+    if(n<k || k<=0 || n<=0) return 0;
+
+    return dp[n][k]=countFriendsPairings(n-1,k-1) + (n-1) * countFriendsPairings(n-2,k-1);
+}
 int main()
 {
-    int n ;
+    int n ,k;
     cin>>n;
-    //cout << countFriendsPairings(n) << endl;
+    cin>>k;
+    dp=new int*[n+1];
+    for(int i=0;i<=n;i++) dp[i]=new int[k+1]();
+    cout << countFriendsPairings(n,k) << endl;
     bool *vis = new bool[n + 1]();
-    cout << find(1, vis, n,"",3);
+    cout << find(1, vis, n,"",k);
     return 0;
 }
