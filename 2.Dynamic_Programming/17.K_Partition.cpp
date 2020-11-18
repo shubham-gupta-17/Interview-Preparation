@@ -6,8 +6,7 @@ int find(int i, bool *vis, int n, string ans, int k)
     if (k == 0 && i == n + 1)
     {
         ans.pop_back();
-        ans.pop_back();
-        //cout<<ans<<endl;
+        cout<<ans<<endl;
         return 1;
     }
     if (i > n || k < 0)
@@ -18,13 +17,13 @@ int find(int i, bool *vis, int n, string ans, int k)
     {
         vis[i] = true;
         int count = 0;
-        count = find(i + 1, vis, n, ans + to_string(i) + ", ", k - 1); // i will remain single
+        count = find(i + 1, vis, n, ans + to_string(i) + ",", k - 1); // i will remain single
         for (int j = i + 1; j <= n; j++)
         {
             if (vis[j])
                 continue;
             vis[j] = true;
-            count += find(i + 1, vis, n, ans + to_string(i) + to_string(j) + ", ", k - 1);
+            count += find(i + 1, vis, n, ans + to_string(i) + to_string(j) + ",", k - 1);
             vis[j] = false;
         }
         vis[i] = false;
