@@ -15,9 +15,18 @@ bool isValid_1(string &s) {
     if(s=="" || s=="abc") return true;
     return  find(s,"abc");
 }
+
+//====================================================================================
+bool isValid(string s) {
+        for(auto it=s.find("abc");it!=string::npos;it=s.find("abc")) s.erase(it,3);
+        return s.empty();
+}
+
+//======================================================================================
 int main()
 {
   string s="abc";
   cout<<isValid_1(s);
+  cout<<isValid(s);
   return 0;
 }
