@@ -38,7 +38,7 @@ int compress(vector<char>& s) {
         }
         
         return idx;
-    }
+}
 int main()
 {
   vector<char> a={'a','a','b','b'};
