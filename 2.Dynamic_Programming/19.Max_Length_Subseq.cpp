@@ -8,7 +8,7 @@ int find_Subseq(int n,int arr[]){
     for(int i=1;i<n;i++){
         for(int j=0;j<i;j++){
             int diff=abs(arr[i]-arr[j]);
-            if(diff==0 || diff=1) 
+            if(diff==0 || diff==1) 
                 dp[i]=max(dp[i],dp[j]+1);
         }
         ans=max(ans,dp[i]);
