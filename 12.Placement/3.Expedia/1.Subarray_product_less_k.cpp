@@ -1,6 +1,11 @@
 #include <bits./stdc++.h>
 using namespace std;
 // leetcode 713
+/* constraints : 1. all the elements are positive or not
+                 2. all the elements are greater than 1 or not
+                 3. product can fit in int or not
+
+*/
 int numSubarrayProductLessThanK(vector<int> &nums, int k)
 {
     int n = nums.size();
